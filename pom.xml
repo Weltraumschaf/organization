@@ -75,7 +75,7 @@
         <connection>scm:git:git://github.com/Weltraumschaf/${github.name}.git</connection>
         <developerConnection>scm:git:git@github.com:Weltraumschaf/${github.name}.git</developerConnection>
         <url>https://github.com/Weltraumschaf/${github.name}.git</url>
-        <tag>0.4.0</tag>
+        <tag>1.0.0</tag>
     </scm>
 
     <distributionManagement>
