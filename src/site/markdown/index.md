@@ -1,0 +1,4 @@
+# Weltraumschaf's Organizational Parent POM
+
+This  POM project  contains  all common  stuff  for all  my  projects to  reduce
+dublication.
