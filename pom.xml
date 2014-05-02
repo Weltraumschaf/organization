@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!--
+      TIPS:
 
+      - Use "mvn versions:display-dependency-updates" to see what dependencies
+        have updates available.
+
+      - Use "mvn versions:display-plugin-updates" to see whan plugins have
+        updates available.
+
+      - use "mvn clean install site site:stage -DstagingDirectory=$dir%"
+        to stage the site with modules to a given direcotry.
+    -->
+      
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
