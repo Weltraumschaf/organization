@@ -22,7 +22,7 @@
 
     <groupId>de.weltraumschaf</groupId>
     <artifactId>organization</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Organization</name>
@@ -85,7 +85,7 @@
         <connection>scm:git:git://github.com/Weltraumschaf/organization.git</connection>
         <developerConnection>scm:git:git@github.com:Weltraumschaf/organization.git</developerConnection>
         <url>https://github.com/Weltraumschaf/organization.git</url>
-      <tag>1.0.5</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
