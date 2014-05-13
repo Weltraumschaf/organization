@@ -13,7 +13,7 @@
       - use "mvn clean install site site:stage -DstagingDirectory=$dir%"
         to stage the site with modules to a given direcotry.
     -->
-      
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
@@ -70,8 +70,6 @@
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
-        <ci.jobName>Organization</ci.jobName>
-        <github.name>organization</github.name>
     </properties>
 
     <prerequisites>
@@ -80,19 +78,18 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/Weltraumschaf/${github.name}/issues</url>
+        <url>https://github.com/Weltraumschaf/organization/issues</url>
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/Weltraumschaf/${github.name}.git</connection>
-        <developerConnection>scm:git:git@github.com:Weltraumschaf/${github.name}.git</developerConnection>
-        <url>https://github.com/Weltraumschaf/${github.name}.git</url>
-        <tag>0.4.0</tag>
+        <connection>scm:git:git://github.com/Weltraumschaf/organization.git</connection>
+        <developerConnection>scm:git:git@github.com:Weltraumschaf/organization.git</developerConnection>
+        <url>https://github.com/Weltraumschaf/organization.git</url>
     </scm>
 
     <ciManagement>
         <system>jenkins</system>
-        <url>https://ci.weltraumschaf.de/job/${ci.jobName}/</url>
+        <url>https://ci.weltraumschaf.de/job/Organization/</url>
     </ciManagement>
 
     <dependencies>
@@ -378,7 +375,7 @@
                 <plugin>
                     <groupId>com.mycila.maven-license-plugin</groupId>
                     <artifactId>maven-license-plugin</artifactId>
-                    <version>1.9.0</version>
+                    <version>1.10.b1</version>
                 </plugin>
 
                 <plugin>
