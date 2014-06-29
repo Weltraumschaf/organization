@@ -45,5 +45,29 @@ public final class StringEscape {
                 .replace(&quot;'&quot;, &quot;&amp;apos;&quot;)
                 .replace(&quot;\&quot;&quot;, &quot;&amp;quot;&quot;);
     }
+
+    /**
+     * Escapes a string that i is usable as file name.
+     * &lt;p&gt;
+     * Escaped characters and there replacements:
+     * &lt;/p&gt;
+     *
+     * &lt;ul&gt;
+     * &lt;li&gt;{@literal ' '} becomes {@literal '_'}&lt;/li&gt;
+     * &lt;li&gt;{@literal '/'} becomes {@literal '_'}&lt;/li&gt;
+     * &lt;li&gt;{@literal '\'} becomes {@literal '_'}&lt;/li&gt;
+     * &lt;li&gt;{@literal ':'} becomes {@literal '_'}&lt;/li&gt;
+     * &lt;/ul&gt;
+     *
+     * @param input must not be {@code null} or empty
+     * @return never {@code null} or empty
+     */
+    public static String escapeFileName(final String input) {
+<span class="fc" id="L66">        return Validate.notEmpty(input, &quot;Parameter 'input' must not be null!&quot;)</span>
+                .replace(&quot; &quot;, &quot;_&quot;)
+                .replace(&quot;/&quot;, &quot;_&quot;)
+                .replace(&quot;\\&quot;, &quot;_&quot;)
+                .replace(&quot;:&quot;, &quot;_&quot;);
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>

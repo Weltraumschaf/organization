@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>StringJoiner.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Commons String</a> &gt; <a href="index.source.html" class="el_package">de.weltraumschaf.commons.string</a> &gt; <span class="el_source">StringJoiner.java</span></div><h1>StringJoiner.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package de.weltraumschaf.commons.string;
+
+import java.util.Iterator;
+import java.util.Objects;
+
+/**
+ * From {@literal org.apache.commons.lang3.StringUtils}.
+ *
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="nc" id="L27">public final class StringJoiner {</span>
+
+    /**
+     * The empty String {@code &quot;&quot;}.
+     *
+     * @since 2.0
+     */
+    public static final String EMPTY = &quot;&quot;;
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No separator is added to the joined String. Null objects or empty strings within the array are represented by
+     * empty strings.&lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null)            = null
+     * StringUtils.join([])              = &quot;&quot;
+     * StringUtils.join([null])          = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]) = &quot;abc&quot;
+     * StringUtils.join([null, &quot;&quot;, &quot;a&quot;]) = &quot;a&quot;
+     * &lt;/pre&gt;
+     *
+     * @param &lt;T&gt; the specific type of values to join together
+     * @param elements the values to join together, may be null
+     * @return the joined String, {@code null} if null array input
+     * @since 2.0
+     * @since 3.0 Changed signature to use varargs
+     */
+    public static &lt;T&gt; String join(final T... elements) {
+<span class="nc" id="L59">        return join(elements, null);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.&lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], ';')  = &quot;a;b;c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], null) = &quot;abc&quot;
+     * StringUtils.join([null, &quot;&quot;, &quot;a&quot;], ';')  = &quot;;;a&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 2.0
+     */
+    public static String join(final Object[] array, final char separator) {
+<span class="nc bnc" id="L85" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L86">            return null;</span>
+        }
+<span class="nc" id="L88">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final long[] array, final char separator) {
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L116">            return null;</span>
+        }
+<span class="nc" id="L118">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final int[] array, final char separator) {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L146">            return null;</span>
+        }
+<span class="nc" id="L148">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final short[] array, final char separator) {
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L176">            return null;</span>
+        }
+<span class="nc" id="L178">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final byte[] array, final char separator) {
+<span class="nc bnc" id="L205" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L206">            return null;</span>
+        }
+<span class="nc" id="L208">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final char[] array, final char separator) {
+<span class="nc bnc" id="L235" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L236">            return null;</span>
+        }
+<span class="nc" id="L238">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final float[] array, final char separator) {
+<span class="nc bnc" id="L265" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L266">            return null;</span>
+        }
+<span class="nc" id="L268">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final double[] array, final char separator) {
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L296">            return null;</span>
+        }
+<span class="nc" id="L298">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.&lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], ';')  = &quot;a;b;c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], null) = &quot;abc&quot;
+     * StringUtils.join([null, &quot;&quot;, &quot;a&quot;], ';')  = &quot;;;a&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 2.0
+     */
+    public static String join(final Object[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L328" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L329">            return null;</span>
+        }
+<span class="nc" id="L331">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L333">            return EMPTY;</span>
+        }
+<span class="nc" id="L335">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L337" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L338">                buf.append(separator);</span>
+            }
+<span class="nc bnc" id="L340" title="All 2 branches missed.">            if (array[i] != null) {</span>
+<span class="nc" id="L341">                buf.append(array[i]);</span>
+            }
+        }
+<span class="nc" id="L344">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final long[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L375" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L376">            return null;</span>
+        }
+<span class="nc" id="L378">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L380">            return EMPTY;</span>
+        }
+<span class="nc" id="L382">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L385">                buf.append(separator);</span>
+            }
+<span class="nc" id="L387">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L389">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final int[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L420" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L421">            return null;</span>
+        }
+<span class="nc" id="L423">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L424" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L425">            return EMPTY;</span>
+        }
+<span class="nc" id="L427">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L429" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L430">                buf.append(separator);</span>
+            }
+<span class="nc" id="L432">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L434">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final byte[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L465" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L466">            return null;</span>
+        }
+<span class="nc" id="L468">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L469" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L470">            return EMPTY;</span>
+        }
+<span class="nc" id="L472">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L473" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L474" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L475">                buf.append(separator);</span>
+            }
+<span class="nc" id="L477">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L479">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final short[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L510" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L511">            return null;</span>
+        }
+<span class="nc" id="L513">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L514" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L515">            return EMPTY;</span>
+        }
+<span class="nc" id="L517">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L518" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L519" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L520">                buf.append(separator);</span>
+            }
+<span class="nc" id="L522">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L524">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final char[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L555" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L556">            return null;</span>
+        }
+<span class="nc" id="L558">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L559" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L560">            return EMPTY;</span>
+        }
+<span class="nc" id="L562">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L563" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L564" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L565">                buf.append(separator);</span>
+            }
+<span class="nc" id="L567">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L569">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final double[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L600" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L601">            return null;</span>
+        }
+<span class="nc" id="L603">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L604" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L605">            return EMPTY;</span>
+        }
+<span class="nc" id="L607">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L608" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L609" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L610">                buf.append(separator);</span>
+            }
+<span class="nc" id="L612">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L614">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final float[] array, final char separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L645" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L646">            return null;</span>
+        }
+<span class="nc" id="L648">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L649" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L650">            return EMPTY;</span>
+        }
+<span class="nc" id="L652">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+<span class="nc bnc" id="L653" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L654" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L655">                buf.append(separator);</span>
+            }
+<span class="nc" id="L657">            buf.append(array[i]);</span>
+        }
+<span class="nc" id="L659">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. A {@code null} separator is the same as an empty String (&quot;&quot;).
+     * Null objects or empty strings within the array are represented by empty strings.&lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)                = null
+     * StringUtils.join([], *)                  = &quot;&quot;
+     * StringUtils.join([null], *)              = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;--&quot;)  = &quot;a--b--c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], null)  = &quot;abc&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;&quot;)    = &quot;abc&quot;
+     * StringUtils.join([null, &quot;&quot;, &quot;a&quot;], ',')   = &quot;,,a&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use, null treated as &quot;&quot;
+     * @return the joined String, {@code null} if null array input
+     */
+    public static String join(final Object[] array, final String separator) {
+<span class="nc bnc" id="L685" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L686">            return null;</span>
+        }
+<span class="nc" id="L688">        return join(array, separator, 0, array.length);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. A {@code null} separator is the same as an empty String (&quot;&quot;).
+     * Null objects or empty strings within the array are represented by empty strings.&lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *, *, *)                = null
+     * StringUtils.join([], *, *, *)                  = &quot;&quot;
+     * StringUtils.join([null], *, *, *)              = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;--&quot;, 0, 3)  = &quot;a--b--c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;--&quot;, 1, 3)  = &quot;b--c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;--&quot;, 2, 3)  = &quot;c&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;--&quot;, 2, 2)  = &quot;&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], null, 0, 3)  = &quot;abc&quot;
+     * StringUtils.join([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;&quot;, 0, 3)    = &quot;abc&quot;
+     * StringUtils.join([null, &quot;&quot;, &quot;a&quot;], ',', 0, 3)   = &quot;,,a&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use, null treated as &quot;&quot;
+     * @param startIndex the first index to start joining from.
+     * @param endIndex the index to stop joining from (exclusive).
+     * @return the joined String, {@code null} if null array input; or the empty string if
+     * {@code endIndex - startIndex &lt;= 0}. The number of joined entries is given by {@code endIndex - startIndex}
+     * @throws ArrayIndexOutOfBoundsException ife&lt;br/&gt; {@code startIndex &lt; 0} or &lt;br/&gt;
+     * {@code startIndex &gt;= array.length()} or &lt;br/&gt; {@code endIndex &lt; 0} or &lt;br/&gt; {@code endIndex &gt; array.length()}
+     */
+    public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+<span class="nc bnc" id="L722" title="All 2 branches missed.">        if (array == null) {</span>
+<span class="nc" id="L723">            return null;</span>
+        }
+<span class="nc bnc" id="L725" title="All 2 branches missed.">        if (separator == null) {</span>
+<span class="nc" id="L726">            separator = EMPTY;</span>
+        }
+
+        // endIndex - startIndex &gt; 0:   Len = NofStrings *(len(firstString) + len(separator))
+        //           (Assuming that all Strings are roughly equally long)
+<span class="nc" id="L731">        final int noOfItems = endIndex - startIndex;</span>
+<span class="nc bnc" id="L732" title="All 2 branches missed.">        if (noOfItems &lt;= 0) {</span>
+<span class="nc" id="L733">            return EMPTY;</span>
+        }
+
+<span class="nc" id="L736">        final StringBuilder buf = new StringBuilder(noOfItems * 16);</span>
+
+<span class="nc bnc" id="L738" title="All 2 branches missed.">        for (int i = startIndex; i &lt; endIndex; i++) {</span>
+<span class="nc bnc" id="L739" title="All 2 branches missed.">            if (i &gt; startIndex) {</span>
+<span class="nc" id="L740">                buf.append(separator);</span>
+            }
+<span class="nc bnc" id="L742" title="All 2 branches missed.">            if (array[i] != null) {</span>
+<span class="nc" id="L743">                buf.append(array[i]);</span>
+            }
+        }
+<span class="nc" id="L746">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided {@code Iterator} into a single String containing the provided elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the iteration are
+     * represented by empty strings.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * See the examples here: {@link #join(Object[],char)}. &lt;/p&gt;
+     *
+     * @param iterator the {@code Iterator} of values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.0
+     */
+    public static String join(final Iterator&lt;?&gt; iterator, final char separator) {
+
+        // handle null, zero and one elements before building a buffer
+<span class="nc bnc" id="L768" title="All 2 branches missed.">        if (iterator == null) {</span>
+<span class="nc" id="L769">            return null;</span>
+        }
+
+<span class="nc bnc" id="L772" title="All 2 branches missed.">        if (!iterator.hasNext()) {</span>
+<span class="nc" id="L773">            return EMPTY;</span>
+        }
+
+<span class="nc" id="L776">        final Object first = iterator.next();</span>
+
+<span class="nc bnc" id="L778" title="All 2 branches missed.">        if (!iterator.hasNext()) {</span>
+<span class="nc" id="L779">            return Objects.toString(first);</span>
+        }
+
+        // two or more elements
+<span class="nc" id="L783">        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small</span>
+<span class="nc bnc" id="L784" title="All 2 branches missed.">        if (first != null) {</span>
+<span class="nc" id="L785">            buf.append(first);</span>
+        }
+
+<span class="nc bnc" id="L788" title="All 2 branches missed.">        while (iterator.hasNext()) {</span>
+<span class="nc" id="L789">            buf.append(separator);</span>
+<span class="nc" id="L790">            final Object obj = iterator.next();</span>
+<span class="nc bnc" id="L791" title="All 2 branches missed.">            if (obj != null) {</span>
+<span class="nc" id="L792">                buf.append(obj);</span>
+            }
+<span class="nc" id="L794">        }</span>
+
+<span class="nc" id="L796">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided {@code Iterator} into a single String containing the provided elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. A {@code null} separator is the same as an empty String (&quot;&quot;).&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * See the examples here: {@link #join(Object[],String)}. &lt;/p&gt;
+     *
+     * @param iterator the {@code Iterator} of values to join together, may be null
+     * @param separator the separator character to use, null treated as &quot;&quot;
+     * @return the joined String, {@code null} if null iterator input
+     */
+    public static String join(final Iterator&lt;?&gt; iterator, final String separator) {
+
+        // handle null, zero and one elements before building a buffer
+<span class="nc bnc" id="L816" title="All 2 branches missed.">        if (iterator == null) {</span>
+<span class="nc" id="L817">            return null;</span>
+        }
+<span class="nc bnc" id="L819" title="All 2 branches missed.">        if (!iterator.hasNext()) {</span>
+<span class="nc" id="L820">            return EMPTY;</span>
+        }
+<span class="nc" id="L822">        final Object first = iterator.next();</span>
+<span class="nc bnc" id="L823" title="All 2 branches missed.">        if (!iterator.hasNext()) {</span>
+<span class="nc" id="L824">            return Objects.toString(first);</span>
+        }
+
+        // two or more elements
+<span class="nc" id="L828">        final StringBuilder buf = new StringBuilder(256); // Java default is 16, probably too small</span>
+<span class="nc bnc" id="L829" title="All 2 branches missed.">        if (first != null) {</span>
+<span class="nc" id="L830">            buf.append(first);</span>
+        }
+
+<span class="nc bnc" id="L833" title="All 2 branches missed.">        while (iterator.hasNext()) {</span>
+<span class="nc bnc" id="L834" title="All 2 branches missed.">            if (separator != null) {</span>
+<span class="nc" id="L835">                buf.append(separator);</span>
+            }
+<span class="nc" id="L837">            final Object obj = iterator.next();</span>
+<span class="nc bnc" id="L838" title="All 2 branches missed.">            if (obj != null) {</span>
+<span class="nc" id="L839">                buf.append(obj);</span>
+            }
+<span class="nc" id="L841">        }</span>
+<span class="nc" id="L842">        return buf.toString();</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided {@code Iterable} into a single String containing the provided elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the iteration are
+     * represented by empty strings.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * See the examples here: {@link #join(Object[],char)}. &lt;/p&gt;
+     *
+     * @param iterable the {@code Iterable} providing the values to join together, may be null
+     * @param separator the separator character to use
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable&lt;?&gt; iterable, final char separator) {
+<span class="nc bnc" id="L862" title="All 2 branches missed.">        if (iterable == null) {</span>
+<span class="nc" id="L863">            return null;</span>
+        }
+<span class="nc" id="L865">        return join(iterable.iterator(), separator);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided {@code Iterable} into a single String containing the provided elements.&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. A {@code null} separator is the same as an empty String (&quot;&quot;).&lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * See the examples here: {@link #join(Object[],String)}. &lt;/p&gt;
+     *
+     * @param iterable the {@code Iterable} providing the values to join together, may be null
+     * @param separator the separator character to use, null treated as &quot;&quot;
+     * @return the joined String, {@code null} if null iterator input
+     * @since 2.3
+     */
+    public static String join(final Iterable&lt;?&gt; iterable, final String separator) {
+<span class="nc bnc" id="L884" title="All 2 branches missed.">        if (iterable == null) {</span>
+<span class="nc" id="L885">            return null;</span>
+        }
+<span class="nc" id="L887">        return join(iterable.iterator(), separator);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.0.201403182114</span></div></body></html>
