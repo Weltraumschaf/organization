@@ -47,7 +47,52 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>CPD Results<a name="CPD_Results"></a></h2><p>The following document contains the results of PMD's  <a class="externalLink" href="http://pmd.sourceforge.net/cpd.html">CPD</a> 5.0.2.</p></div><div class="section"><h2>Duplications<a name="Duplications"></a></h2><p>CPD found no problems in your source code.</p></div>
+        <div class="section"><h2>CPD Results<a name="CPD_Results"></a></h2><p>The following document contains the results of PMD's  <a class="externalLink" href="http://pmd.sourceforge.net/cpd.html">CPD</a> 5.0.2.</p></div><div class="section"><h2>Duplications<a name="Duplications"></a></h2><table align="center" border="0" class="bodyTable"><tr class="a"><th>File</th><th>Line</th></tr><tr class="b"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>374</td></tr><tr class="a"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>419</td></tr><tr class="b"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>464</td></tr><tr class="a"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>509</td></tr><tr class="b"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>554</td></tr><tr class="a"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>599</td></tr><tr class="b"><td>de/weltraumschaf/commons/string/StringJoiner.java</td><td>644</td></tr><tr class="a"><td colspan='2'><div><pre>    public static String join(final long[] array, final char separator, final int startIndex, final int endIndex) {
+        if (array == null) {
+            return null;
+        }
+        final int noOfItems = endIndex - startIndex;
+        if (noOfItems &lt;= 0) {
+            return EMPTY;
+        }
+        final StringBuilder buf = new StringBuilder(noOfItems * 16);
+        for (int i = startIndex; i &lt; endIndex; i++) {
+            if (i &gt; startIndex) {
+                buf.append(separator);
+            }
+            buf.append(array[i]);
+        }
+        return buf.toString();
+    }
+
+    /**
+     * &lt;p&gt;
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     * &lt;/p&gt;
+     *
+     * &lt;p&gt;
+     * No delimiter is added before or after the list. Null objects or empty strings within the array are represented by
+     * empty strings.
+     * &lt;/p&gt;
+     *
+     * &lt;pre&gt;
+     * StringUtils.join(null, *)               = null
+     * StringUtils.join([], *)                 = &quot;&quot;
+     * StringUtils.join([null], *)             = &quot;&quot;
+     * StringUtils.join([1, 2, 3], ';')  = &quot;1;2;3&quot;
+     * StringUtils.join([1, 2, 3], null) = &quot;123&quot;
+     * &lt;/pre&gt;
+     *
+     * @param array the array of values to join together, may be null
+     * @param separator the separator character to use
+     * @param startIndex the first index to start joining from. It is an error to pass in an end index past the end of
+     * the array
+     * @param endIndex the index to stop joining from (exclusive). It is an error to pass in an end index past the end
+     * of the array
+     * @return the joined String, {@code null} if null array input
+     * @since 3.2
+     */
+    public static String join(final int[] array, final char separator, final int startIndex, final int endIndex) {</pre></div></td></tr></table></div>
       </div>
     </div>
     <div class="clear">
