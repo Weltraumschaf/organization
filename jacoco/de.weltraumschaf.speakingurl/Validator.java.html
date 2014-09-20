@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Validator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Speaking URL</a> &gt; <a href="index.source.html" class="el_package">de.weltraumschaf.speakingurl</a> &gt; <span class="el_source">Validator.java</span></div><h1>Validator.java</h1><pre class="source lang-java linenums">package de.weltraumschaf.speakingurl;
+
+/**
+ * Provides convenience methods for input validation.
+ * 
+ * @author Sascha Droste &lt;pid@posteo.net&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="fc" id="L9">final class Validator {</span>
+   
+    /**
+     * Throws an {@link NullPointerException} if validated object is {@code null}.
+     * &lt;p&gt;
+     * Sets a proper exception messages which names the parameter which is 
+     * {@code null}. Instead of throwing the exception with empty message and 
+     * the developer must dig into the stacktrace (if available).
+     * &lt;/p&gt;
+     * 
+     * @param validated asserted to be not {@code null}
+     * @param name name of asserted parameter, must not be {@code null} or empty
+     * @return validated object for method chaining
+     */
+    &lt;T&gt; T notNull(final T validated, final String name) {
+<span class="fc" id="L24">        validateName(name);</span>
+        
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (null == validated) {</span>
+<span class="fc" id="L27">            throw new NullPointerException(</span>
+                String.format(&quot;Parameter '%s' must not be null!&quot;, name));
+        }
+        
+<span class="fc" id="L31">        return validated;</span>
+    }
+    
+    int notNegative(final int  validated, final String name) {
+<span class="fc" id="L35">        validateName(name);</span>
+        
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (validated &lt; 0) {</span>
+<span class="fc" id="L38">            throw new IllegalArgumentException(</span>
+                String.format(&quot;Parameter '%s' must not be negative (was '%d')!&quot;, name, validated));
+        }
+        
+<span class="fc" id="L42">        return validated;</span>
+    }
+    
+    private void validateName(final String name) {
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (null == name) {</span>
+<span class="fc" id="L47">            throw new NullPointerException(&quot;The name must not be null!&quot;);</span>
+        }
+        
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (name.trim().isEmpty()) {</span>
+<span class="fc" id="L51">            throw new IllegalArgumentException(&quot;The name must not be empty!&quot;);</span>
+        }
+<span class="fc" id="L53">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

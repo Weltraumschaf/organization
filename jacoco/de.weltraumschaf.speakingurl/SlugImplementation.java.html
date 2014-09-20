@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SlugImplementation.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Speaking URL</a> &gt; <a href="index.source.html" class="el_package">de.weltraumschaf.speakingurl</a> &gt; <span class="el_source">SlugImplementation.java</span></div><h1>SlugImplementation.java</h1><pre class="source lang-java linenums">package de.weltraumschaf.speakingurl;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ *
+ * @author Sascha Droste &lt;pid@posteo.net&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="fc" id="L13">final class SlugImplementation implements Slug {</span>
+
+    static final Set&lt;Character&gt; URIC_NO_SLASH;
+    static final Set&lt;Character&gt; URIC;
+<span class="fc" id="L17">    static final Set&lt;Character&gt; MARK = Collections.unmodifiableSet(</span>
+        new HashSet&lt;&gt;(Arrays.asList('.', '!', '~', '*', '\'', '(', ')')));
+        
+    static {
+<span class="fc" id="L21">        Set&lt;Character&gt; characters = new HashSet&lt;&gt;(Arrays.asList(';', '?', ':', '@', '&amp;', '=', '+', '$', ','));</span>
+<span class="fc" id="L22">        URIC_NO_SLASH = Collections.unmodifiableSet(characters);</span>
+        
+<span class="fc" id="L24">        characters.add('/');</span>
+<span class="fc" id="L25">        URIC = Collections.unmodifiableSet(characters);</span>
+<span class="fc" id="L26">    }</span>
+    
+    private String separator;
+    private Language lang;
+    private boolean maintainCase;
+    private boolean titleCase;
+    private Set&lt;String&gt; titleCaseExclude;
+    private int truncate;
+    private boolean uric;
+    private boolean uricNoSlash;
+    private boolean mark;
+    private String[][] custom;
+
+    @Override
+    public String get(final String input) {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (null == input) {</span>
+<span class="nc" id="L42">            throw new NullPointerException(&quot;Parameter 'input' must not be null!&quot;);</span>
+        }
+
+<span class="nc" id="L45">        return &quot;&quot;;</span>
+    }
+
+    @Override
+    public String getSeparator() {
+<span class="fc" id="L50">        return separator;</span>
+    }
+
+    SlugImplementation setSeparator(final String separator) {
+<span class="fc" id="L54">        this.separator = separator;</span>
+<span class="fc" id="L55">        return this;</span>
+    }
+
+    @Override
+    public Language getLang() {
+<span class="fc" id="L60">        return lang;</span>
+    }
+
+    SlugImplementation setLang(final Language lang) {
+<span class="fc" id="L64">        this.lang = lang;</span>
+<span class="fc" id="L65">        return this;</span>
+    }
+
+    @Override
+    public boolean isMaintainCase() {
+<span class="fc" id="L70">        return maintainCase;</span>
+    }
+
+    SlugImplementation setMaintainCase(final boolean maintainCase) {
+<span class="fc" id="L74">        this.maintainCase = maintainCase;</span>
+<span class="fc" id="L75">        return this;</span>
+    }
+
+    @Override
+    public boolean isTitleCase() {
+<span class="fc" id="L80">        return titleCase;</span>
+    }
+
+    SlugImplementation  setTitleCase(final boolean titleCase) {
+<span class="fc" id="L84">        this.titleCase = titleCase;</span>
+<span class="fc" id="L85">        return this;</span>
+    }
+
+    @Override
+    public Set&lt;String&gt; getTitleCaseExclude() {
+<span class="fc" id="L90">        return titleCaseExclude;</span>
+    }
+
+    SlugImplementation  setTitleCaseExclude(final Set&lt;String&gt; titleCaseExclude) {
+<span class="fc" id="L94">        this.titleCaseExclude = titleCaseExclude;</span>
+<span class="fc" id="L95">        return this;</span>
+    }
+
+    @Override
+    public int getTruncate() {
+<span class="fc" id="L100">        return truncate;</span>
+    }
+
+    SlugImplementation  setTruncate(final int truncate) {
+<span class="fc" id="L104">        this.truncate = truncate;</span>
+<span class="fc" id="L105">        return this;</span>
+    }
+
+    @Override
+    public boolean isUric() {
+<span class="fc" id="L110">        return uric;</span>
+    }
+
+    SlugImplementation  setUric(final boolean uric) {
+<span class="fc" id="L114">        this.uric = uric;</span>
+<span class="fc" id="L115">        return this;</span>
+    }
+
+    @Override
+    public boolean isUricNoSlash() {
+<span class="fc" id="L120">        return uricNoSlash;</span>
+    }
+
+    SlugImplementation  setUricNoSlash(final boolean uricNoSlash) {
+<span class="fc" id="L124">        this.uricNoSlash = uricNoSlash;</span>
+<span class="fc" id="L125">        return this;</span>
+    }
+
+    @Override
+    public boolean isMark() {
+<span class="fc" id="L130">        return mark;</span>
+    }
+
+    SlugImplementation  setMark(final boolean mark) {
+<span class="fc" id="L134">        this.mark = mark;</span>
+<span class="fc" id="L135">        return this;</span>
+    }
+
+    @Override
+    public String[][] getCustom() {
+<span class="fc" id="L140">        return custom;</span>
+    }
+
+    SlugImplementation  setCustom(final String[][] custom) {
+<span class="fc" id="L144">        this.custom = custom;</span>
+<span class="fc" id="L145">        return this;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

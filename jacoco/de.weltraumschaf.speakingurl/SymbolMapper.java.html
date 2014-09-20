@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SymbolMapper.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Speaking URL</a> &gt; <a href="index.source.html" class="el_package">de.weltraumschaf.speakingurl</a> &gt; <span class="el_source">SymbolMapper.java</span></div><h1>SymbolMapper.java</h1><pre class="source lang-java linenums">package de.weltraumschaf.speakingurl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Language specific symbol translations.
+ *
+ * @author Sascha Droste &lt;pid@posteo.net&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+<span class="nc" id="L12">final class SymbolMapper {</span>
+
+<span class="nc" id="L14">    private static final Map&lt;Language, String[][]&gt; MAPPING = new HashMap&lt;&gt;();</span>
+
+    static {
+<span class="nc" id="L17">        MAPPING.put(Language.ARABIC, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;la-nihaya&quot;},
+            {&quot;♥&quot;, &quot;hob&quot;},
+            {&quot;&amp;&quot;, &quot;wa&quot;},
+            {&quot;|&quot;, &quot;aw&quot;},
+            {&quot;&lt;&quot;, &quot;aqal-men&quot;},
+            {&quot;&gt;&quot;, &quot;akbar-men&quot;},
+            {&quot;∑&quot;, &quot;majmou&quot;},
+            {&quot;¤&quot;, &quot;omla&quot;}
+        });
+<span class="nc" id="L28">        MAPPING.put(Language.GERMAN, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;unendlich&quot;},
+            {&quot;♥&quot;, &quot;Liebe&quot;},
+            {&quot;&amp;&quot;, &quot;und&quot;},
+            {&quot;|&quot;, &quot;oder&quot;},
+            {&quot;&lt;&quot;, &quot;kleiner als&quot;},
+            {&quot;&gt;&quot;, &quot;groesser als&quot;},
+            {&quot;∑&quot;, &quot;Summe von&quot;},
+            {&quot;¤&quot;, &quot;Waehrung&quot;}
+        });
+<span class="nc" id="L39">        MAPPING.put(Language.NETHERLAND, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;oneindig&quot;},
+            {&quot;♥&quot;, &quot;liefde&quot;},
+            {&quot;&amp;&quot;, &quot;en&quot;},
+            {&quot;|&quot;, &quot;of&quot;},
+            {&quot;&lt;&quot;, &quot;kleiner dan&quot;},
+            {&quot;&gt;&quot;, &quot;groter dan&quot;},
+            {&quot;∑&quot;, &quot;som&quot;},
+            {&quot;¤&quot;, &quot;valuta&quot;}
+        });
+<span class="nc" id="L50">        MAPPING.put(Language.ENGLISH, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;infinity&quot;},
+            {&quot;♥&quot;, &quot;love&quot;},
+            {&quot;&amp;&quot;, &quot;and&quot;},
+            {&quot;|&quot;, &quot;or&quot;},
+            {&quot;&lt;&quot;, &quot;less than&quot;},
+            {&quot;&gt;&quot;, &quot;greater than&quot;},
+            {&quot;∑&quot;, &quot;sum&quot;},
+            {&quot;¤&quot;, &quot;currency&quot;}
+        });
+<span class="nc" id="L61">        MAPPING.put(Language.SPAIN, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;infinito&quot;},
+            {&quot;♥&quot;, &quot;amor&quot;},
+            {&quot;&amp;&quot;, &quot;y&quot;},
+            {&quot;|&quot;, &quot;u&quot;},
+            {&quot;&lt;&quot;, &quot;menos que&quot;},
+            {&quot;&gt;&quot;, &quot;mas que&quot;},
+            {&quot;∑&quot;, &quot;suma de los&quot;},
+            {&quot;¤&quot;, &quot;moneda&quot;}
+        });
+<span class="nc" id="L72">        MAPPING.put(Language.FRENCH, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;infiniment&quot;},
+            {&quot;♥&quot;, &quot;Amour&quot;},
+            {&quot;&amp;&quot;, &quot;et&quot;},
+            {&quot;|&quot;, &quot;ou&quot;},
+            {&quot;&lt;&quot;, &quot;moins que&quot;},
+            {&quot;&gt;&quot;, &quot;superieure a&quot;},
+            {&quot;∑&quot;, &quot;somme des&quot;},
+            {&quot;¤&quot;, &quot;monnaie&quot;}
+        });
+<span class="nc" id="L83">        MAPPING.put(Language.PORTUGETH, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;infinito&quot;},
+            {&quot;♥&quot;, &quot;amor&quot;},
+            {&quot;&amp;&quot;, &quot;e&quot;},
+            {&quot;|&quot;, &quot;ou&quot;},
+            {&quot;&lt;&quot;, &quot;menor que&quot;},
+            {&quot;&gt;&quot;, &quot;maior que&quot;},
+            {&quot;∑&quot;, &quot;soma&quot;},
+            {&quot;¤&quot;, &quot;moeda&quot;}
+        });
+<span class="nc" id="L94">        MAPPING.put(Language.RUSSIAN, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;beskonechno&quot;},
+            {&quot;♥&quot;, &quot;lubov&quot;},
+            {&quot;&amp;&quot;, &quot;i&quot;},
+            {&quot;|&quot;, &quot;ili&quot;},
+            {&quot;&lt;&quot;, &quot;menshe&quot;},
+            {&quot;&gt;&quot;, &quot;bolshe&quot;},
+            {&quot;∑&quot;, &quot;summa&quot;},
+            {&quot;¤&quot;, &quot;valjuta&quot;}
+        });
+<span class="nc" id="L105">        MAPPING.put(Language.CZECH, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;nekonecno&quot;},
+            {&quot;♥&quot;, &quot;laska&quot;},
+            {&quot;&amp;&quot;, &quot;a&quot;},
+            {&quot;|&quot;, &quot;nebo&quot;},
+            {&quot;&lt;&quot;, &quot;mene jako&quot;},
+            {&quot;&gt;&quot;, &quot;vice jako&quot;},
+            {&quot;∑&quot;, &quot;soucet&quot;},
+            {&quot;¤&quot;, &quot;mena&quot;}
+        });
+<span class="nc" id="L116">        MAPPING.put(Language.SWEDISH, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;nekonecno&quot;},
+            {&quot;♥&quot;, &quot;laska&quot;},
+            {&quot;&amp;&quot;, &quot;a&quot;},
+            {&quot;|&quot;, &quot;alebo&quot;},
+            {&quot;&lt;&quot;, &quot;menej ako&quot;},
+            {&quot;&gt;&quot;, &quot;viac ako&quot;},
+            {&quot;∑&quot;, &quot;sucet&quot;},
+            {&quot;¤&quot;, &quot;mena&quot;}
+        });
+<span class="nc" id="L127">        MAPPING.put(Language.VIETNAMESE, new String[][]{</span>
+            {&quot;∆&quot;, &quot;delta&quot;},
+            {&quot;∞&quot;, &quot;vo cuc&quot;},
+            {&quot;♥&quot;, &quot;yeu&quot;},
+            {&quot;&amp;&quot;, &quot;va&quot;},
+            {&quot;|&quot;, &quot;hoac&quot;},
+            {&quot;&lt;&quot;, &quot;nho hon&quot;},
+            {&quot;&gt;&quot;, &quot;lon hon&quot;},
+            {&quot;∑&quot;, &quot;tong&quot;},
+            {&quot;¤&quot;, &quot;tien te&quot;}
+        });
+<span class="nc" id="L138">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

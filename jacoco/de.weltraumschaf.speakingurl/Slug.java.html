@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Slug.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Speaking URL</a> &gt; <a href="index.source.html" class="el_package">de.weltraumschaf.speakingurl</a> &gt; <span class="el_source">Slug.java</span></div><h1>Slug.java</h1><pre class="source lang-java linenums">package de.weltraumschaf.speakingurl;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Implementations of this interface can create a slug from any string.
+ * &lt;p&gt;
+ * A slug is a so called 'static' or 'Clean URL' or 'Pretty URL' or
+ * 'nice-looking URL' or 'Speaking URL' or 'user-friendly URL' or 'SEO-friendly
+ * URL' from a string. This module aims to transliterate the input string.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * The implementation is thread safe because the state of the slug is not stored
+ * in fields. Except of the options, but they are immutable. That's the reason
+ * why you must use {@link Slug.Builder a builder} to configure and create a
+ * slug.
+ * &lt;/p&gt;
+ *
+ * @since 1.0.0
+ * @author Sascha Droste &lt;pid@posteo.net&gt;
+ * @author Sven Strittmatter &lt;weltraumschaf@googlemail.com&gt;
+ */
+public interface Slug {
+
+    /**
+     * Generates a slug from given input string.
+     *
+     * @param input must not be {@code null}
+     * @return never {@code null}, maybe empty
+     */
+    String get(String input);
+
+    String getSeparator();
+
+    Language getLang();
+
+    boolean isMaintainCase();
+
+    boolean isTitleCase();
+
+    Set&lt;String&gt; getTitleCaseExclude();
+
+    int getTruncate();
+
+    boolean isUric();
+
+    boolean isUricNoSlash();
+
+    boolean isMark();
+
+    String[][] getCustom();
+
+    /**
+     * Builder to configure and create the {@link  Slug slugger}.
+     *
+     * @since 1.0.0
+     */
+    public final class Builder {
+
+        private static final String DEFAULT_SEPARATOR = &quot;-&quot;;
+<span class="fc" id="L64">        private static final Language DEFAULT_LANG = Language.ENGLISH;</span>
+        private static final boolean DEFAULT_MAINTAIN_CASE = false;
+        private static final boolean DEFAULT_TITLE_CASE = false;
+<span class="fc" id="L67">        private static final Set&lt;String&gt; DEFAULT_TITLE_CASE_EXCLUDES = Collections.emptySet();</span>
+        private static final int DEFAULT_TRUNCATE = 0;
+        private static final boolean DEFAULT_URIC = false;
+        private static final boolean DEFAULT_URIC_NO_SLASH = false;
+        private static final boolean DEFAULT_MARK = false;
+<span class="fc" id="L72">        private static final String[][] DEFAULT_CUSTOM = new String[0][0];</span>
+<span class="fc" id="L73">        private String separator = DEFAULT_SEPARATOR;</span>
+<span class="fc" id="L74">        private Language lang = DEFAULT_LANG;</span>
+<span class="fc" id="L75">        private boolean maintainCase = DEFAULT_MAINTAIN_CASE;</span>
+<span class="fc" id="L76">        private boolean titleCase = DEFAULT_TITLE_CASE;</span>
+<span class="fc" id="L77">        private Set&lt;String&gt; titleCaseExclude = DEFAULT_TITLE_CASE_EXCLUDES;</span>
+<span class="fc" id="L78">        private int truncate = DEFAULT_TRUNCATE;</span>
+<span class="fc" id="L79">        private boolean uric = DEFAULT_URIC;</span>
+<span class="fc" id="L80">        private boolean uricNoSlash = DEFAULT_URIC_NO_SLASH;</span>
+<span class="fc" id="L81">        private boolean mark = DEFAULT_MARK;</span>
+<span class="fc" id="L82">        private String[][] custom = DEFAULT_CUSTOM;</span>
+<span class="fc" id="L83">        private final Validator validator = new Validator();</span>
+
+        /**
+         * Use {@link #newBuiler() factory method} instead.
+         */
+        private Builder() {
+<span class="fc" id="L89">            super();</span>
+<span class="fc" id="L90">        }</span>
+
+        /**
+         * Creates new builder.
+         *
+         * @return never {@code null}, always new instance
+         */
+        public static Builder newBuiler() {
+<span class="fc" id="L98">            return new Builder();</span>
+        }
+
+        /**
+         * Creates the {@link Slug slugger}.
+         *
+         * @return never {@code null}, always new instance
+         */
+        public Slug create() {
+<span class="fc" id="L107">            return new SlugImplementation().setSeparator(separator)</span>
+                    .setLang(lang)
+                    .setMaintainCase(maintainCase)
+                    .setTitleCase(titleCase)
+                    .setTitleCaseExclude(titleCaseExclude)
+                    .setTruncate(truncate)
+                    .setUric(uric)
+                    .setUricNoSlash(uricNoSlash)
+                    .setMark(mark)
+                    .setCustom(custom);
+        }
+
+        /**
+         * Character that replace the whitespaces (default is
+         * {@value #DEFAULT_SEPARATOR}).
+         *
+         * @param separator must not be {@code null}
+         * @return self validated object for method chaining
+         */
+        public Builder separator(final String separator) {
+<span class="fc" id="L127">            this.separator = validator.notNull(separator, &quot;separator&quot;);</span>
+<span class="fc" id="L128">            return this;</span>
+        }
+
+        /**
+         * Language for symbol translation (Default is {@link #DEFAULT_LANG}).
+         * &lt;p&gt; {@link Language#NONE} for don't convert symbols.
+         * &lt;/p&gt;
+         *
+         * @param lang must not be {@code null}
+         * @return self validated object for method chaining
+         */
+        public Builder lang(final Language lang) {
+<span class="fc" id="L140">            this.lang = validator.notNull(lang, &quot;lang&quot;);</span>
+<span class="fc" id="L141">            return this;</span>
+        }
+
+        /**
+         * How to deal with case of characters (default is
+         * {@value #DEFAULT_MAINTAIN_CASE}).
+         *
+         * @param maintainCase if {@code true} maintain case, if {@code false}
+         * convert all chars to lower case
+         * @return self validated object for method chaining
+         */
+        public Builder maintainCase(final boolean maintainCase) {
+<span class="fc" id="L153">            this.maintainCase = maintainCase;</span>
+<span class="fc" id="L154">            return this;</span>
+        }
+
+        /**
+         * Whether to convert input string to title-case (default is
+         * {@value #DEFAULT_TITLE_CASE}).
+         *
+         * @param titleCase {@code true} to convert, else {@code false}
+         * @return self validated object for method chaining
+         */
+        public Builder titleCase(final boolean titleCase) {
+<span class="fc" id="L165">            this.titleCase = titleCase;</span>
+<span class="fc" id="L166">            return this;</span>
+        }
+
+        /**
+         * Words to exclude from title case (default is
+         * {@value #DEFAULT_TITLE_CASE_EXCLUDES}).
+         * &lt;p&gt;
+         * This option has only effect if
+         * {@link Builder#titleCase(boolean) titleCase} is set {@code true}.
+         * &lt;/p&gt;
+         *
+         * @param titleCaseExclude list of words to exclude, must not be
+         * {@code null}
+         * @return self validated object for method chaining
+         */
+        public Builder titleCaseExclude(final String ... titleCaseExclude) {
+<span class="fc" id="L182">            validator.notNull(titleCaseExclude, &quot;titleCaseExclude&quot;);</span>
+<span class="fc" id="L183">            titleCaseExclude(new HashSet&lt;&gt;(Arrays.asList(titleCaseExclude)));</span>
+<span class="fc" id="L184">            return this;</span>
+        }
+        
+        /**
+         * Words to exclude from title case (default is
+         * {@value #DEFAULT_TITLE_CASE_EXCLUDES}).
+         * &lt;p&gt;
+         * This option has only effect if
+         * {@link Builder#titleCase(boolean) titleCase} is set {@code true}.
+         * &lt;/p&gt;
+         *
+         * @param titleCaseExclude list of words to exclude, must not be
+         * {@code null}
+         * @return self validated object for method chaining
+         */
+        public Builder titleCaseExclude(final Set&lt;String&gt; titleCaseExclude) {
+<span class="fc" id="L200">            this.titleCaseExclude = Collections.unmodifiableSet(</span>
+                validator.notNull(titleCaseExclude, &quot;titleCaseExclude&quot;));
+<span class="fc" id="L202">            return this;</span>
+        }
+
+        /**
+         * Max length to truncate without breaking words (default is
+         * {@value #DEFAULT_TRUNCATE}).
+         * &lt;p&gt; {@code 0} does not truncate.
+         * &lt;/p&gt;
+         *
+         * @param truncate must not be negative
+         * @return self validated object for method chaining
+         */
+        public Builder truncate(final int truncate) {
+<span class="fc" id="L215">            this.truncate = validator.notNegative(truncate, &quot;truncate&quot;);</span>
+<span class="fc" id="L216">            return this;</span>
+        }
+
+        /**
+         * Whether to allow additional characters (default
+         * {@value #DEFAULT_URIC}).
+         * &lt;p&gt;
+         * If {@code true} special characters
+         * ({@value SlugImplementation#URIC}).
+         * &lt;/p&gt;
+         *
+         * @param uric if {@code true} they will not be converted
+         * @return self validated object for method chaining
+         */
+        public Builder uric(final boolean uric) {
+<span class="fc" id="L231">            this.uric = uric;</span>
+<span class="fc" id="L232">            return this;</span>
+        }
+
+        /**
+         * Whether to allow additional characters (default
+         * {@value #DEFAULT_URIC_NO_SLASH}).
+         * &lt;p&gt;
+         * If {@code true} special characters
+         * ({@value SlugImplementation#URIC_NO_SLASH}).
+         * &lt;/p&gt;
+         *
+         * @param uric if {@code true} they will not be converted
+         * @return self validated object for method chaining
+         */
+        public Builder uricNoSlash(final boolean uricNoSlash) {
+<span class="fc" id="L247">            this.uricNoSlash = uricNoSlash;</span>
+<span class="fc" id="L248">            return this;</span>
+        }
+
+        /**
+         * Whether to allow additional characters (default
+         * {@value #DEFAULT_MARK}).
+         * &lt;p&gt;
+         * If {@code true} special characters
+         * ({@value SlugImplementation#MARK}).
+         * &lt;/p&gt;
+         *
+         * @param uric if {@code true} they will not be converted
+         * @return self validated object for method chaining
+         */
+        public Builder mark(final boolean mark) {
+<span class="fc" id="L263">            this.mark = mark;</span>
+<span class="fc" id="L264">            return this;</span>
+        }
+
+        /**
+         * Custom map for translation (default is {@value #DEFAULT_CUSTOM}.
+         * &lt;p&gt;
+         * This overwrites all!
+         * &lt;/p&gt;
+         * &lt;p&gt;
+         * Example:
+         * &lt;/p&gt;
+         * &lt;pre&gt;
+         * {@code
+         *      { '&amp;': '#', '*': ' star ' }
+         * }
+         * &lt;/pre&gt;
+         *
+         * FIXME Fix example.
+         *
+         * @param custom must not be {@code null}
+         * @return self validated object for method chaining
+         */
+        public Builder custom(final String[][] custom) {
+<span class="nc" id="L287">            this.custom = validator.notNull(custom, &quot;custom&quot;);</span>
+<span class="nc" id="L288">            return this;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
