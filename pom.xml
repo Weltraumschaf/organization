@@ -169,16 +169,6 @@
                     <groupId>com.kryshchuk.maven.plugins</groupId>
                     <artifactId>umlet-maven-plugin</artifactId>
                     <version>1.1.6</version>
-
-                    <executions>
-                        <execution>
-                            <id>convert-uml</id>
-
-                            <goals>
-                                <goal>convert</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
 
                 <plugin>
@@ -300,6 +290,22 @@
                             <goals>
                                 <goal>javadoc</goal>
                                 <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.kryshchuk.maven.plugins</groupId>
+                    <artifactId>umlet-maven-plugin</artifactId>
+                    <version>1.1.6</version>
+
+                    <executions>
+                        <execution>
+                            <id>convert-uml</id>
+
+                            <goals>
+                                <goal>convert</goal>
                             </goals>
                         </execution>
                     </executions>
