@@ -85,7 +85,6 @@
         <dependency.mockito.version>1.10.8</dependency.mockito.version>
         <dependency.multithreadedtc.version>1.01</dependency.multithreadedtc.version>
         <dependency.equalsverifier.version>1.5.1</dependency.equalsverifier.version>
-        <dependency.asm.version>5.0.3</dependency.asm.version>
 
         <extension.maven-scm-provider-gitexe.version>1.9.2</extension.maven-scm-provider-gitexe.version>
         <extension.maven-scm-manager-plexus.version>1.9.2</extension.maven-scm-manager-plexus.version>
@@ -149,23 +148,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>${dependency.asm.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>nl.jqno.equalsverifier</groupId>
             <artifactId>equalsverifier</artifactId>
             <version>${dependency.equalsverifier.version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.ow2.asm</groupId>
-                    <artifactId>asm</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
