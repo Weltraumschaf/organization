@@ -84,7 +84,7 @@
         <dependency.hamcrest.version>1.3</dependency.hamcrest.version>
         <dependency.mockito.version>1.10.8</dependency.mockito.version>
         <dependency.multithreadedtc.version>1.01</dependency.multithreadedtc.version>
-        <dependency.equalsverifier.version>1.5.1</dependency.equalsverifier.version>
+        <dependency.equalsverifier.version>1.7.2</dependency.equalsverifier.version>
 
         <extension.maven-scm-provider-gitexe.version>1.9.2</extension.maven-scm-provider-gitexe.version>
         <extension.maven-scm-manager-plexus.version>1.9.2</extension.maven-scm-manager-plexus.version>
