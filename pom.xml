@@ -184,6 +184,29 @@
                     <groupId>com.kryshchuk.maven.plugins</groupId>
                     <artifactId>umlet-maven-plugin</artifactId>
                     <version>1.2</version>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>src/site/resources/uml</directory>
+                                <includes>
+                                    <include>**/*.uxf</include>
+                                </includes>
+                                <excludes/>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>convert-uml</id>
+                            <goals>
+                                <goal>convert</goal>
+                            </goals>
+                            <configuration>
+                                <format>png</format>
+                                <outputDirectory>target/site/images</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
 
                 <plugin>
