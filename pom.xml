@@ -243,7 +243,7 @@
 
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>3.4</version>
                     <!-- http://tech-mind.blogspot.de/2009/01/configure-site-plugin-for-maven-multi.html -->
                     <!--<inherited>false</inherited>-->
 
