@@ -181,35 +181,7 @@
 
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>com.kryshchuk.maven.plugins</groupId>
-                    <artifactId>umlet-maven-plugin</artifactId>
-                    <version>1.2</version>
-                    <configuration>
-                        <filesets>
-                            <fileset>
-                                <directory>src/site/resources/uml</directory>
-                                <includes>
-                                    <include>**/*.uxf</include>
-                                </includes>
-                                <excludes />
-                            </fileset>
-                        </filesets>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>convert-uml</id>
-                            <goals>
-                                <goal>convert</goal>
-                            </goals>
-                            <configuration>
-                                <format>png</format>
-                                <outputDirectory>target/site/images</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
+                <!-- Apache Mojos -->
                 <plugin>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.8</version>
@@ -247,6 +219,16 @@
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.10.1</version>
                 </plugin>
 
                 <plugin>
@@ -405,7 +387,7 @@
                         <includeTests>true</includeTests>
                         <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                         <minimumTokens>100</minimumTokens>
-                        <targetJdk>${project.build.targetJdk}</targetJdk>
+                        <targetJdk>${project.build.version.target}</targetJdk>
                     </configuration>
                 </plugin>
 
@@ -443,6 +425,7 @@
                     </executions>
                 </plugin>
 
+                <!-- Codehaus Mojos -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>versions-maven-plugin</artifactId>
@@ -486,6 +469,12 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>1.12</version>
+                </plugin>
+
+                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.7.201606060606</version>
@@ -505,6 +494,51 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.5.0</version>
+                </plugin>
+
+                <!-- Other Mojos -->
+                <plugin>
+                    <groupId>com.kryshchuk.maven.plugins</groupId>
+                    <artifactId>umlet-maven-plugin</artifactId>
+                    <version>1.2</version>
+
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>src/site/resources/uml</directory>
+                                <includes>
+                                    <include>**/*.uxf</include>
+                                </includes>
+                                <excludes />
+                            </fileset>
+                        </filesets>
+                    </configuration>
+
+                    <executions>
+                        <execution>
+                            <id>convert-uml</id>
+                            <goals>
+                                <goal>convert</goal>
+                            </goals>
+                            <configuration>
+                                <format>png</format>
+                                <outputDirectory>target/site/images</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <!-- https://github.com/eirslett/frontend-maven-plugin -->
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>1.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
