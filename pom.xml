@@ -78,6 +78,23 @@
         <project.build.version.source>1.7</project.build.version.source>
         <project.build.version.target>1.7</project.build.version.target>
 
+        <project.assembly-desciptors.directory>${project.basedir}/src/assembly</project.assembly-desciptors.directory>
+
+        <project.main.directory>${project.basedir}/src/main</project.main.directory>
+        <project.main.sources.directory>${project.main.directory}/java</project.main.sources.directory>
+        <project.main.resources.directory>${project.main.directory}/resources</project.main.resources.directory>
+        <project.main.scripts.directory>${project.basedir}/src/main/scripts</project.main.scripts.directory>
+        <project.main.ant.directory>${project.basedir}/src/main/ant</project.main.ant.directory>
+
+        <project.test.directory>${project.basedir}/src/test</project.test.directory>
+        <project.test.sources.directory>${project.test.directory}/java</project.test.sources.directory>
+        <project.test.resources.directory>${project.test.directory}/resources</project.test.resources.directory>
+
+        <project.it.directory>${project.basedir}/src/it</project.it.directory>
+        <project.it.sources.directory>${project.it.directory}/java</project.it.sources.directory>
+        <project.it.resources.directory>${project.it.directory}/resources</project.it.resources.directory>
+
+
         <maven.version>3.1.0</maven.version>
 
         <!-- http://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
