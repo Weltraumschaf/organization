@@ -79,6 +79,7 @@
         <project.build.version.target>1.7</project.build.version.target>
 
         <project.assembly-desciptors.directory>${project.basedir}/src/assembly</project.assembly-desciptors.directory>
+        <project.generated.sources.dir>${project.basedir}/src/generated/java</project.generated.sources.dir>
 
         <project.main.directory>${project.basedir}/src/main</project.main.directory>
         <project.main.sources.directory>${project.main.directory}/java</project.main.sources.directory>
