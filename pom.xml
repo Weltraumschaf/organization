@@ -270,11 +270,35 @@
                     <!-- http://tech-mind.blogspot.de/2009/01/configure-site-plugin-for-maven-multi.html -->
                     <!--<inherited>false</inherited>-->
 
+                    <configuration>
+                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                        <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
+                    </configuration>
+
                     <dependencies>
                         <dependency>
+                            <!--
+                                The Fluido skin we use needs this downgraded Doxia version.
+                                http://maven.40175.n5.nabble.com/maven-site-plugin-3-5-ClassNotFoundException-td5862952.html
+                            -->
                             <groupId>org.apache.maven.doxia</groupId>
-                            <artifactId>doxia-module-markdown</artifactId>
+                            <artifactId>doxia-core</artifactId>
                             <version>1.7</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctor-maven-plugin</artifactId>
+                            <version>1.5.5</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj</artifactId>
+                            <version>1.5.5</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.jruby</groupId>
+                            <artifactId>jruby-complete</artifactId>
+                            <version>1.7.26</version>
                         </dependency>
                     </dependencies>
 
