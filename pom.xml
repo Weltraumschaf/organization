@@ -116,10 +116,6 @@
         <extension.wagon-gitsite.version>0.3.1</extension.wagon-gitsite.version>
     </properties>
 
-    <prerequisites>
-        <maven>${maven.version}</maven>
-    </prerequisites>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -273,6 +269,22 @@
                     <configuration>
                         <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
                         <outputEncoding>${project.reporting.outputEncoding}</outputEncoding>
+                        <generateReports>true</generateReports>
+                        <generateSitemap>false</generateSitemap>
+                        <relativizeDecorationLinks>true</relativizeDecorationLinks>
+
+                        <!--
+                        https://github.com/asciidoctor/asciidoctor-maven-plugin
+                        http://asciidoctor.org/docs/asciidoctor-maven-plugin/
+                        -->
+                        <asciidoc><!-- IntelliJ complains that this is wrong, but w/o this tag e.g. syntax highlighting does not work. -->
+                            <attributes>
+                                <icons>font</icons>
+                                <source-highlighter>coderay</source-highlighter>
+                                <coderay-css>style</coderay-css>
+                                <toclevels>2</toclevels>
+                            </attributes>
+                        </asciidoc>
                     </configuration>
 
                     <dependencies>
@@ -301,15 +313,6 @@
                             <version>1.7.26</version>
                         </dependency>
                     </dependencies>
-
-                    <executions>
-                        <execution>
-                            <id>attach-descriptor</id>
-                            <goals>
-                                <goal>attach-descriptor</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
 
                 <plugin>
