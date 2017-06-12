@@ -96,7 +96,7 @@
         <project.it.resources.directory>${project.it.directory}/resources</project.it.resources.directory>
 
 
-        <maven.version>3.1.0</maven.version>
+        <maven.version>3.2.1</maven.version>
 
         <!-- http://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
         <sonar.host.url>http://johan.weltraumschaf.de:9000</sonar.host.url>
