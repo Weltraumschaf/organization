@@ -237,6 +237,14 @@
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>2.20</version>
+
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.surefire</groupId>
+                            <artifactId>surefire-junit47</artifactId>
+                            <version>2.20</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
 
                 <plugin>
@@ -591,6 +599,15 @@
                 <plugin>
                     <groupId>com.github.jeluard</groupId>
                     <artifactId>plantuml-maven-plugin</artifactId>
+                    <version>1.2</version>
+
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.plantuml</groupId>
+                            <artifactId>plantuml</artifactId>
+                            <version>8059</version>
+                        </dependency>
+                    </dependencies>
 
                     <executions>
                         <execution>
@@ -615,12 +632,17 @@
                     </configuration>
                 </plugin>
 
-
                 <plugin>
                     <!-- https://github.com/eirslett/frontend-maven-plugin -->
                     <groupId>com.github.eirslett</groupId>
                     <artifactId>frontend-maven-plugin</artifactId>
                     <version>1.4</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.bsc.maven</groupId>
+                    <artifactId>maven-processor-plugin</artifactId>
+                    <version>3.3.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>
