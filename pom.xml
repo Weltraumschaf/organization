@@ -238,7 +238,7 @@
 
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.20</version>
+                    <version>2.20.1</version>
 
                     <dependencies>
                         <dependency>
@@ -345,7 +345,7 @@
 
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.0.0-M1</version>
+                    <version>3.0.0</version>
                     <configuration>
                         <bottom>
                             Copyright &amp;copy; 2014 &lt;a href="http://www.weltraumschaf.de/" target="_blank"&gt;
@@ -523,7 +523,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
-                    <version>3.3.0.603</version>
+                    <version>3.4.0.905</version>
                 </plugin>
 
                 <plugin>
@@ -628,7 +628,7 @@
                 <plugin>
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
-                    <version>3.3.1</version>
+                    <version>3.3.2</version>
                 </plugin>
             </plugins>
         </pluginManagement>
