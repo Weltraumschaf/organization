@@ -95,6 +95,7 @@
         <project.it.sources.directory>${project.it.directory}/java</project.it.sources.directory>
         <project.it.resources.directory>${project.it.directory}/resources</project.it.resources.directory>
 
+        <project.output.dir>${project.basedir}/target</project.output.dir>
 
         <maven.version>3.2.1</maven.version>
 
@@ -575,7 +576,7 @@
                             </goals>
                             <configuration>
                                 <format>png</format>
-                                <outputDirectory>target/site/images</outputDirectory>
+                                <outputDirectory>${project.output.dir}/site/images</outputDirectory>
                             </configuration>
                         </execution>
                     </executions>
@@ -613,7 +614,7 @@
                             </includes>
                         </sourceFiles>
 
-                        <outputDirectory>target/site/images</outputDirectory>
+                        <outputDirectory>${project.output.dir}/site/images</outputDirectory>
                     </configuration>
                 </plugin>
 
