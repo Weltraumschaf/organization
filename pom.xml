@@ -113,6 +113,11 @@
         <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
         <dependency.plantuml.version>1.2017.18</dependency.plantuml.version>
 
+        <asciidoctor.maven.plugin.version>1.5.6</asciidoctor.maven.plugin.version>
+        <asciidoctorj.diagram.version>1.5.4</asciidoctorj.diagram.version>
+        <asciidoctorj.pdf.version>1.5.0-alpha.15</asciidoctorj.pdf.version>
+        <asciidoctorj.jruby-complete.version>1.7.21</asciidoctorj.jruby-complete.version>
+
         <extension.maven-scm-provider-gitexe.version>1.9.2</extension.maven-scm-provider-gitexe.version>
         <extension.maven-scm-manager-plexus.version>1.9.2</extension.maven-scm-manager-plexus.version>
         <extension.wagon-gitsite.version>0.3.1</extension.wagon-gitsite.version>
@@ -284,6 +289,31 @@
                 </plugin>
 
                 <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>${asciidoctor.maven.plugin.version}</version>
+
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-diagram</artifactId>
+                            <version>${asciidoctorj.diagram.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.jruby</groupId>
+                            <artifactId>jruby-complete</artifactId>
+                            <version>${asciidoctorj.jruby-complete.version}
+                            </version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-pdf</artifactId>
+                            <version>${asciidoctorj.pdf.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+
+                <plugin>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.6</version>
                     <!-- http://tech-mind.blogspot.de/2009/01/configure-site-plugin-for-maven-multi.html -->
@@ -323,7 +353,7 @@
                         <dependency>
                             <groupId>org.asciidoctor</groupId>
                             <artifactId>asciidoctor-maven-plugin</artifactId>
-                            <version>1.5.6</version>
+                            <version>${asciidoctor.maven.plugin.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.asciidoctor</groupId>
