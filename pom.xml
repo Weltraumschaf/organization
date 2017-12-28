@@ -205,6 +205,15 @@
                 <plugin>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.8</version>
+
+                    <dependencies>
+                        <dependency>
+                            <!-- For foreach task. -->
+                            <groupId>ant-contrib</groupId>
+                            <artifactId>ant-contrib</artifactId>
+                            <version>20020829</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
 
                 <plugin>
