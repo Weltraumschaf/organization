@@ -228,12 +228,12 @@
 
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.1.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.1.0</version>
 
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
@@ -247,12 +247,12 @@
 
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.20.1</version>
+                    <version>2.21.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>2.20.1</version>
+                    <version>2.21.0</version>
 
                     <dependencies>
                         <dependency>
@@ -265,17 +265,17 @@
 
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.1.0</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.0</version>
+                    <version>3.2.1</version>
                 </plugin>
 
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
-                    <version>2.10.1</version>
+                    <version>3.0.1</version>
                 </plugin>
 
                 <plugin>
@@ -285,7 +285,7 @@
 
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.0.2</version>
+                    <version>3.1.0</version>
                 </plugin>
 
                 <plugin>
@@ -315,7 +315,7 @@
 
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.6</version>
+                    <version>3.7.1</version>
                     <!-- http://tech-mind.blogspot.de/2009/01/configure-site-plugin-for-maven-multi.html -->
                     <!--<inherited>false</inherited>-->
 
@@ -449,7 +449,7 @@
 
                 <plugin>
                     <artifactId>maven-shade-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.1.1</version>
                 </plugin>
 
                 <plugin>
@@ -465,7 +465,7 @@
 
                 <plugin>
                     <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>2.17</version>
+                    <version>3.0.0</version>
 
                     <dependencies>
                         <dependency>
@@ -483,7 +483,7 @@
 
                 <plugin>
                     <artifactId>maven-pmd-plugin</artifactId>
-                    <version>3.8</version>
+                    <version>3.9.0</version>
 
                     <configuration>
                         <linkXRef>false</linkXRef>
@@ -496,7 +496,7 @@
 
                 <plugin>
                     <artifactId>maven-plugin-plugin</artifactId>
-                    <version>3.5</version>
+                    <version>3.5.1</version>
                 </plugin>
 
                 <plugin>
@@ -580,7 +580,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.7.9</version>
+                    <version>0.8.1</version>
                 </plugin>
 
                 <plugin>
@@ -667,7 +667,7 @@
                 <plugin>
                     <groupId>org.bsc.maven</groupId>
                     <artifactId>maven-processor-plugin</artifactId>
-                    <version>3.3.2</version>
+                    <version>3.3.3</version>
                 </plugin>
             </plugins>
         </pluginManagement>
