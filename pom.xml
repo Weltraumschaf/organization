@@ -112,8 +112,7 @@
         <dependency.equalsverifier.version>2.4.8</dependency.equalsverifier.version>
         <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
         <dependency.plantuml.version>1.2017.18</dependency.plantuml.version>
-        <junit-vintage-engine.version>5.2.0</junit-vintage-engine.version>
-        <junit-jupiter-engine.version>${junit-vintage-engine.version}</junit-jupiter-engine.version>
+        <junit5.version>5.2.0</junit5.version>
         <surefire-junit47.version>2.22.0</surefire-junit47.version>
         <junit-platform-surefire-provider.version>1.2.0</junit-platform-surefire-provider.version>
 
@@ -146,16 +145,38 @@
                 </exclusions>
             </dependency>
 
-            <!-- JUnit 5 -->
+            <!-- JUnit 5 (https://github.com/junit-team/junit5-samples) -->
             <dependency>
-                <groupId>org.junit.vintage</groupId>
-                <artifactId>junit-vintage-engine</artifactId>
-                <version>${junit-vintage-engine.version}</version>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit5.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>${junit-jupiter-engine.version}</version>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <!-- Stuff for migration from JUnit 4. -->
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-migrationsupport</artifactId>
+                <version>${junit5.version}</version>
+            </dependency>
+            <dependency>
+                <!-- Not sure for what we need this, but it is in the migration sample. -->
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-launcher</artifactId>
+                <version>${junit5.version}</version>
             </dependency>
 
             <dependency>
@@ -270,19 +291,6 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.0</version>
-
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.surefire</groupId>
-                            <artifactId>surefire-junit47</artifactId>
-                            <version>${surefire-junit47.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.junit.platform</groupId>
-                            <artifactId>junit-platform-surefire-provider</artifactId>
-                            <version>${junit-platform-surefire-provider.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
 
                 <plugin>
