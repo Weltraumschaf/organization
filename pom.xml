@@ -97,7 +97,7 @@
 
         <project.output.dir>${project.basedir}/target</project.output.dir>
 
-        <maven.version>3.3.9</maven.version>
+        <maven.version>3.5.0</maven.version>
 
         <!-- http://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
         <sonar.host.url>http://johan.weltraumschaf.de:9000</sonar.host.url>
@@ -112,6 +112,7 @@
         <mockito-junit-jupiter.version>2.22.0</mockito-junit-jupiter.version>
         <dependency.multithreadedtc.version>1.01</dependency.multithreadedtc.version>
         <dependency.equalsverifier.version>3.0</dependency.equalsverifier.version>
+        <lombok.version>1.18.4</lombok.version>
         <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
         <dependency.plantuml.version>1.2018.11</dependency.plantuml.version>
         <junit5.version>5.3.1</junit5.version>
@@ -126,6 +127,8 @@
         <extension.maven-scm-provider-gitexe.version>1.9.2</extension.maven-scm-provider-gitexe.version>
         <extension.maven-scm-manager-plexus.version>1.9.2</extension.maven-scm-manager-plexus.version>
         <extension.wagon-gitsite.version>0.3.1</extension.wagon-gitsite.version>
+        <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
+        <maven-scr-plugin.version>1.26.0</maven-scr-plugin.version>
     </properties>
 
     <prerequisites>
@@ -202,6 +205,12 @@
                 <groupId>nl.jqno.equalsverifier</groupId>
                 <artifactId>equalsverifier</artifactId>
                 <version>${dependency.equalsverifier.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -604,6 +613,18 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.6.0</version>
+                </plugin>
+
+                <!-- Apache Felix Mojos -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-scr-plugin</artifactId>
+                    <version>${maven-scr-plugin.version}</version>
                 </plugin>
 
                 <!-- Other Mojos -->
