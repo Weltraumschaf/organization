@@ -115,7 +115,7 @@
         <lombok.version>1.18.4</lombok.version>
         <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
         <dependency.plantuml.version>1.2018.11</dependency.plantuml.version>
-        <junit5.version>5.3.1</junit5.version>
+        <junit5.version>5.4.2</junit5.version>
         <surefire-junit47.version>2.22.0</surefire-junit47.version>
         <junit-platform-surefire-provider.version>1.2.0</junit-platform-surefire-provider.version>
 
