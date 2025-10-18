@@ -75,8 +75,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.build.version.source>1.7</project.build.version.source>
-        <project.build.version.target>1.7</project.build.version.target>
+        <project.build.version.source>1.8</project.build.version.source>
+        <project.build.version.target>1.8</project.build.version.target>
 
         <project.assembly-desciptors.directory>${project.basedir}/src/assembly</project.assembly-desciptors.directory>
         <project.generated.sources.dir>${project.basedir}/src/generated/java</project.generated.sources.dir>
