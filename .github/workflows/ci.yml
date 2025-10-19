@@ -21,7 +21,7 @@ jobs:
           server-password: MAVEN_PASSWORD
 
       - name: Build & Publish to Maven Central
-        run: mvn -U -B -e -X validate deploy -P snapshot
+        run: mvn -U -B validate deploy -P snapshot
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
