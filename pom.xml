@@ -662,7 +662,7 @@
                 <plugin>
                     <groupId>com.github.jeluard</groupId>
                     <artifactId>plantuml-maven-plugin</artifactId>
-                    <version>7954</version>
+                    <version>1.2</version>
 
                     <dependencies>
                         <dependency>
