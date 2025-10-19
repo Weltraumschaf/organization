@@ -1,16 +1,12 @@
-# This workflow will publish a Java project with Maven
+# This workflow will test a Java project with Maven
 # See https://github.com/jonashackt/github-actions-release-maven
 
-name: Publish Snapshot
-
-on:
-  push:
-    branches: [ 'main' ]
+name: CI
+on: [ pull_request, push, workflow_dispatch ]
 
 jobs:
-  publish-snapshot:
+  ci:
     runs-on: ubuntu-24.04
-    if: github.repository == 'Weltraumschaf/organization'
     steps:
 
       - name: Checkout repository
@@ -21,7 +17,6 @@ jobs:
         with:
           java-version: 11
           distribution: semeru
-          server-id: central
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
