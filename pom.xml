@@ -106,7 +106,7 @@
 
         <project.output.dir>${project.basedir}/target</project.output.dir>
 
-        <maven.version>3.5.0</maven.version>
+        <maven.version>3.9.0</maven.version>
 
         <!-- http://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
         <sonar.host.url>https://johan.weltraumschaf.de:9000</sonar.host.url>
