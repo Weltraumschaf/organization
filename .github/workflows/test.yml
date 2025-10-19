@@ -2,7 +2,7 @@
 # See https://github.com/jonashackt/github-actions-release-maven
 
 name: Java Tests
-on: [pull_request, push, workflow_dispatch]
+on: [ pull_request, push, workflow_dispatch ]
 
 jobs:
   test:
