@@ -98,7 +98,7 @@
         <maven.version>3.5.0</maven.version>
 
         <!-- http://docs.sonarqube.org/display/SONAR/Analysis+Parameters -->
-        <sonar.host.url>http://johan.weltraumschaf.de:9000</sonar.host.url>
+        <sonar.host.url>https://johan.weltraumschaf.de:9000</sonar.host.url>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
         <sonar.language>java</sonar.language>
