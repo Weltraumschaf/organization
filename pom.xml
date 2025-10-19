@@ -115,23 +115,23 @@
         <sonar.language>java</sonar.language>
 
         <dependency.junit.version>4.13.2</dependency.junit.version>
-        <dependency.hamcrest.version>1.3</dependency.hamcrest.version>
+        <dependency.hamcrest.version>3.0</dependency.hamcrest.version>
         <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
         <dependency.mockito.version>5.20.0</dependency.mockito.version>
-        <mockito-junit-jupiter.version>2.22.0</mockito-junit-jupiter.version>
+        <mockito-junit-jupiter.version>5.20.0</mockito-junit-jupiter.version>
         <dependency.multithreadedtc.version>1.01</dependency.multithreadedtc.version>
-        <dependency.equalsverifier.version>3.0</dependency.equalsverifier.version>
-        <lombok.version>1.18.4</lombok.version>
-        <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
+        <dependency.equalsverifier.version>4.2</dependency.equalsverifier.version>
+        <lombok.version>1.18.42</lombok.version>
+        <dependency.jsonassert.version>1.5.3</dependency.jsonassert.version>
         <dependency.plantuml.version>1.2025.9</dependency.plantuml.version>
-        <junit5.version>5.7.0</junit5.version>
+        <junit5.version>6.0.0</junit5.version>
         <surefire-junit47.version>2.22.0</surefire-junit47.version>
         <junit-platform-surefire-provider.version>1.2.0</junit-platform-surefire-provider.version>
 
         <asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
-        <asciidoctorj.diagram.version>1.5.9</asciidoctorj.diagram.version>
-        <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
-        <asciidoctorj.jruby-complete.version>9.2.0.0</asciidoctorj.jruby-complete.version>
+        <asciidoctorj.diagram.version>3.0.1</asciidoctorj.diagram.version>
+        <asciidoctorj.pdf.version>2.3.21</asciidoctorj.pdf.version>
+        <asciidoctorj.jruby-complete.version>10.0.2.0</asciidoctorj.jruby-complete.version>
 
         <extension.maven-scm-provider-gitexe.version>1.9.2</extension.maven-scm-provider-gitexe.version>
         <extension.maven-scm-manager-plexus.version>1.9.2</extension.maven-scm-manager-plexus.version>
@@ -379,7 +379,7 @@
                             -->
                             <groupId>org.apache.maven.doxia</groupId>
                             <artifactId>doxia-core</artifactId>
-                            <version>1.7</version>
+                            <version>2.0</version>
                         </dependency>
                         <dependency>
                             <groupId>org.asciidoctor</groupId>
@@ -389,7 +389,7 @@
                         <dependency>
                             <groupId>org.asciidoctor</groupId>
                             <artifactId>asciidoctorj</artifactId>
-                            <version>1.6.0-alpha.7</version>
+                            <version>3.0.0</version>
                         </dependency>
                         <dependency>
                             <groupId>org.jruby</groupId>
