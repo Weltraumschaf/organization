@@ -1,0 +1,22 @@
+# This workflow will test a Java project with Maven
+# See https://github.com/jonashackt/github-actions-release-maven
+
+name: Java Tests
+on: [pull_request, push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: semeru
+
+      - name: Build with Maven
+        run: mvn -U -B verify # -U: force updates for dependencies, -B: no user input
