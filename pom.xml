@@ -22,11 +22,11 @@
     <description>
         Contains the organization parent pom for weltraumschaf.de.
     </description>
-    <url>http://www.weltraumschaf.de/</url>
+    <url>https://github.com/Weltraumschaf/organization</url>
 
     <organization>
         <name>Weltraumschaf</name>
-        <url>http://www.weltraumschaf.de</url>
+        <url>https://www.weltraumschaf.de</url>
     </organization>
 
     <developers>
@@ -44,7 +44,7 @@
     <licenses>
         <license>
             <name>THE BEER-WARE LICENSE</name>
-            <url>http://www.weltraumschaf.de/the-beer-ware-license.txt</url>
+            <url>https://www.weltraumschaf.de/the-beer-ware-license.txt</url>
             <distribution>repo</distribution>
             <comments>
                 LICENSE
