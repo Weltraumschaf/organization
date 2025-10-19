@@ -2,6 +2,10 @@
 
 Here we describe all the ceremonial stuff necessary to publish a Java library to [Maven Central](https://central.sonatype.com/).
 
+
+- [Docs for publishing to Maven Central](https://central.sonatype.org/publish/publish-portal-guide/)
+- [Publishing By Using the Maven Plugin](https://central.sonatype.org/publish/publish-portal-maven/)
+
 ## How to Perform a Release
 
 The whole release process is automated by a [GitHub action workflow](https://github.com/Weltraumschaf/organization/actions) which utilizes the [Maven Plugin](https://central.sonatype.org/publish/publish-portal-maven/). Since we need the possibility to set custom versions (e.g. 2.0.0-beta) we can not use a simple one-push-button solution. Instead, we utilize en event triggered workflow to achieve this. The release process is as following:  
