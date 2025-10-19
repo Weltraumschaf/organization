@@ -108,7 +108,7 @@
         <dependency.junit.version>4.12</dependency.junit.version>
         <dependency.hamcrest.version>1.3</dependency.hamcrest.version>
         <hamcrest-junit.version>2.0.0.0</hamcrest-junit.version>
-        <dependency.mockito.version>2.22.0</dependency.mockito.version>
+        <dependency.mockito.version>5.20.0</dependency.mockito.version>
         <mockito-junit-jupiter.version>2.22.0</mockito-junit-jupiter.version>
         <dependency.multithreadedtc.version>1.01</dependency.multithreadedtc.version>
         <dependency.equalsverifier.version>3.0</dependency.equalsverifier.version>
