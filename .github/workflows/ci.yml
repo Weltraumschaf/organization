@@ -15,8 +15,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v5
         with:
-          java-version: 11
-          distribution: semeru
+          java-version: 17
+          distribution: temurin
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
