@@ -1,0 +1,32 @@
+# This workflow will publish a Java project with Maven
+# See https://github.com/jonashackt/github-actions-release-maven
+
+name: Publish Snapshot
+
+on:
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  publish-snapshot:
+    runs-on: ubuntu-24.04
+    if: github.repository == 'Weltraumschaf/organization'
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: semeru
+          server-id: central
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: Build & Publish to Maven Central
+        run: mvn -U -B clean deploy -P snapshot # -U: force updates for dependencies, -B: no user input
+        env:
+          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
