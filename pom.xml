@@ -114,7 +114,7 @@
         <dependency.equalsverifier.version>3.0</dependency.equalsverifier.version>
         <lombok.version>1.18.4</lombok.version>
         <dependency.jsonassert.version>1.5.0</dependency.jsonassert.version>
-        <dependency.plantuml.version>1.2018.11</dependency.plantuml.version>
+        <dependency.plantuml.version>1.2025.9</dependency.plantuml.version>
         <junit5.version>5.7.0</junit5.version>
         <surefire-junit47.version>2.22.0</surefire-junit47.version>
         <junit-platform-surefire-provider.version>1.2.0</junit-platform-surefire-provider.version>
