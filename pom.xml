@@ -13,13 +13,6 @@
       - use "mvn clean install site site:stage -DstagingDirectory=$dir%"
         to stage the site with modules to a given directory.
     -->
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <groupId>de.weltraumschaf.organization</groupId>
     <artifactId>organization-parent</artifactId>
     <version>3.0.0-SNAPSHOT</version>
@@ -64,6 +57,11 @@
             </comments>
         </license>
     </licenses>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/Weltraumschaf/organization/issues</url>
+    </issueManagement>
 
     <scm>
         <connection>scm:git:git://github.com/Weltraumschaf/organization.git</connection>
@@ -130,10 +128,6 @@
         <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
         <maven-scr-plugin.version>1.26.0</maven-scr-plugin.version>
     </properties>
-
-    <prerequisites>
-        <maven>${maven.version}</maven>
-    </prerequisites>
 
     <dependencyManagement>
         <dependencies>
@@ -707,44 +701,75 @@
                     <artifactId>maven-processor-plugin</artifactId>
                     <version>3.3.3</version>
                 </plugin>
+
+                <!-- Release plugins -->
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.8.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <publishingServerId>central</publishingServerId>
+                        <autoPublish>true</autoPublish>
+                        <waitUntil>published</waitUntil>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                            <configuration>
+                                <!-- This is required to make sure the plugin does not stop asking for -->
+                                <!-- user input on the passphrase -->
+                                <gpgArguments>
+                                    <arg>--pinentry-mode</arg>
+                                    <arg>loopback</arg>
+                                </gpgArguments>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
-        <!-- http://jpz-log.info/archives/2010/12/14/1446/ -->
         <profile>
-            <id>release-sign-artifacts</id>
-
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
-
+            <id>release</id>
             <build>
                 <plugins>
                     <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-
-                        <configuration>
-                            <keyname>45585598</keyname>
-                        </configuration>
-
-                        <executions>
-                            <execution>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>snapshot</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-
 </project>
