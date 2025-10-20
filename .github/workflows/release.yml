@@ -94,7 +94,7 @@ jobs:
         uses: WyriHaximus/github-action-get-previous-tag@v1
 
       - name: "Create GitHub Release"
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           token: ${{ github.token }} # could be replaced with personal access token
           tag_name: ${{ steps.previous_tag.outputs.tag }}
